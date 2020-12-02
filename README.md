@@ -1,5 +1,7 @@
-# G213Colors
+# G213Colors-Slackware
 A application to change the key colors on a Logitech G213 Prodigy Gaming Keyboard using [SebiTimeWaster](https://github.com/SebiTimeWaster)'s [G213Colors](https://github.com/SebiTimeWaster/G213Colors).
+
+Some small tweaks have been made in this fork to allow for easily installing on Slackware Linux, with a provided rc.d script, and also udev rules so the application does not need sudo/root rights to set colours.
 
 ## Supported devices
 
@@ -52,17 +54,25 @@ In order to run the program without root privileges you have to create a [udev r
 After rebooting your pc you can restore the pre-reboot state by running the app with parameter -t
 
 ```Bash
-sudo g213colors-gui -t
+g213colors-gui -t
 ```
 
-You can also do this automatically at reboot by enabling the systemd service.
+You can also do this automatically at reboot by enabling the included rc.d script
 
-```Bash
-sudo systemctl enable g213colors.service
+```
+chmod +x /etc/rc.d/rc.G213Colors
+```
+
+And then appending this to */etc/rc.d/rc.local*
+```
+if [ -x /etc/rc.d/rc.G213Colors ]; then                                                                                             
+    sh /etc/rc.d/rc.G213Colors                                                                                                      
+fi
 ```
 
 ## Known issues
 
+The udev rules allow for changing the colour without root access, but the program still requires sudo/root permissions to alter the */etc/G213Colors.conf* file.
 
 ## ToDo
 
