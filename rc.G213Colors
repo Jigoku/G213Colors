@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/g213colors-gui -t >/dev/null &
+/usr/bin/g213colors-gui -t >/dev/null 2>&1 &
